@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.* ;
+
+public class Solution {
+    public static void setZeros(int matrix[][]) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+        for(int i=0;i<matrix.length;i++)
+        {
+            for(int j=0;j<matrix[0].length;j++)
+            {
+                if(matrix[i][j] == 0)
+                {
+                    zeros(i,j,row,col,matrix);
+                }
+            }
+        }
+
+
+         for(int i=0;i<matrix.length;i++)
+        {
+            for(int j=0;j<matrix[0].length;j++)
+            {
+                if(matrix[i][j] == -1)
+                {
+                    matrix[i][j]=0;
+                }
+            }
+        }
+    }
+    public static void zeros(int row,int column ,int n1, int n2,int matrix[][])
+    {
+        for(int i=0;i<n2;i++)
+        {
+            if(matrix[row][i] ==0)
+            {
+                continue;
+            }
+            else
+            {
+               matrix[row][i] = -1;
+            }
+            
+        }
+
+        for(int i=0;i<n1;i++)
+        {
+            if(matrix[i][column] ==0){
+                continue;
+            }
+            else
+            matrix[i][column] = -1;
+        }
+    }
+
+}
