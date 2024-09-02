@@ -1,56 +1,34 @@
-import java.io.*;
-import java.util.* ;
+import java.util.*;
 
 public class Solution {
     public static void setZeros(int matrix[][]) {
-        int row = matrix.length;
-        int col = matrix[0].length;
-        for(int i=0;i<matrix.length;i++)
-        {
-            for(int j=0;j<matrix[0].length;j++)
-            {
-                if(matrix[i][j] == 0)
-                {
-                    zeros(i,j,row,col,matrix);
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+
+        boolean[] rowMarker = new boolean[rows];
+        boolean[] colMarker = new boolean[cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (matrix[i][j] == 0) {
+                    rowMarker[i] = true;
+                    colMarker[j] = true;
                 }
             }
         }
 
+        for (int i = 0; i < rows; i++) {
+            if (rowMarker[i]) {
+                Arrays.fill(matrix[i], 0);
+            }
+        }
 
-         for(int i=0;i<matrix.length;i++)
-        {
-            for(int j=0;j<matrix[0].length;j++)
-            {
-                if(matrix[i][j] == -1)
-                {
-                    matrix[i][j]=0;
+        for (int j = 0; j < cols; j++) {
+            if (colMarker[j]) {
+                for (int i = 0; i < rows; i++) {
+                    matrix[i][j] = 0;
                 }
             }
         }
     }
-    public static void zeros(int row,int column ,int n1, int n2,int matrix[][])
-    {
-        for(int i=0;i<n2;i++)
-        {
-            if(matrix[row][i] ==0)
-            {
-                continue;
-            }
-            else
-            {
-               matrix[row][i] = -1;
-            }
-            
-        }
-
-        for(int i=0;i<n1;i++)
-        {
-            if(matrix[i][column] ==0){
-                continue;
-            }
-            else
-            matrix[i][column] = -1;
-        }
-    }
-
 }
